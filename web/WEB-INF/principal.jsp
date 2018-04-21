@@ -24,7 +24,7 @@
                     %>
                     <tr>
                        <td><%=i%></td>
-                       <td><%=pedidos.getIdMesa() %></td>
+                       <td><%=pedidos.getIdMesa().getDescricao() %></td>
                        <td><%=pedidos.getResponsavel() %></td>
                        <td><%=pedidos.getTotal() %></td>
                        <td><a href="editaPedido.html?id=<%=i%>" class="edit">Editar</a><a href="#" class="delete">Fechar</a></td>  
@@ -36,7 +36,7 @@
                 </tbody>
             </table>
             
-        <label><h3>Mesas Fechadas</h3></label>
+        <label><h3>Mesas Disponíveis</h3></label>
         <div class="grid_16">
             <table>
                 <thead> 
@@ -46,16 +46,24 @@
                 </thead> 
                 <tbody>
                     <%
+                        boolean achouMesa = false;
                         for(Mesas mesas : (List<Mesas>) request.getAttribute("mesas")) {
+                            achouMesa = false;
+                            for(Pedido pedidos : (List<Pedido>) request.getAttribute("pedidos")) {
+                                if (pedidos.VerificaMesa(mesas)){
+                                    achouMesa = true;
+                                } 
+                            }
+                            if (achouMesa == false){
                     %>
-                    <tr>
-                       <td><%=mesas.getCodigo() %></td>
-                       <td><%=mesas.getDescricao()%></td>
-                       <td><a href="editaPedido.html" class="edit">Abrir Mesa</a></td>  
-                    </tr>
-                    <%
-                        i++;
-                    }            
+                        <tr>
+                           <td><%=mesas.getCodigo() %></td>
+                           <td><%=mesas.getDescricao()%></td>
+                           <td><a href="editaPedido.html" class="edit">Abrir Mesa</a></td>  
+                        </tr>
+                    <%                                
+                            }                            
+                        }
                     %> 
                 </tbody>
             </table>
