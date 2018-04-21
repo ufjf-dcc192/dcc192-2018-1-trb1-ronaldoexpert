@@ -64,4 +64,8 @@ public class MoviPedidos {
         return  numPedido.getNumero() + " - " + codProduto.getDescricao() + " | " + quatidade + " * " + vlrUnitario + " = " + vlrTotal;
     }
     
+    public boolean verificaProduto(Produtos p){
+        return p.equals(this.codProduto);
+    }
+    
 }

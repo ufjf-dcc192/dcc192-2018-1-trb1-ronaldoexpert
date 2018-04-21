@@ -22,15 +22,16 @@
                     <td><%=i %></td>
                     <td><%=produtos.getDescricao()%></td>
                     <td><%=produtos.getVlrUunitario() %></td>
-                    <td><a href="#" class="edit">Editar</a><a href="#" class="delete">Deletar</a></td>               
+                    <td><a href="novoProduto.html?id=<%=i%>" class="edit">Editar</a><a href="excluiProduto.html?id=<%=i%>" class="delete">Deletar</a></td>               
                 </tr>
                 <%
                     i++;
                 }            
                 %>
+                <TR><td COLSPAN = 4><a href="novoProduto.html?id=-1" class="edit">Novo Produto</a></td></TR>
             </tbody>            
         </table>
-            <a href="novoProduto.html" class="edit">Novo</a>
+            
     </div>
     
  <%@include file="../jspf/footer.jspf" %>
