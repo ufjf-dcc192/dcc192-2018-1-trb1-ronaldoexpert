@@ -17,7 +17,7 @@ public class ListaDeMoviPedidos {
             moviPedido.add(new MoviPedidos(ListaDePedidos.getInstance().get(1), ListaDeProdutos.getInstance().get(2), 10, ListaDeProdutos.getInstance().get(2).getVlrUunitario(), ListaDeProdutos.getInstance().get(2).getVlrUunitario() * 10));                  
             moviPedido.add(new MoviPedidos(ListaDePedidos.getInstance().get(1), ListaDeProdutos.getInstance().get(3), 1, ListaDeProdutos.getInstance().get(3).getVlrUunitario(), ListaDeProdutos.getInstance().get(3).getVlrUunitario() * 1));                  
             
-            moviPedido.add(new MoviPedidos(ListaDePedidos.getInstance().get(2), ListaDeProdutos.getInstance().get(4), 1, ListaDeProdutos.getInstance().get(4).getVlrUunitario(), ListaDeProdutos.getInstance().get(4).getVlrUunitario() * 1));                  
+            moviPedido.add(new MoviPedidos(ListaDePedidos.getInstance().get(2), ListaDeProdutos.getInstance().get(2), 1, ListaDeProdutos.getInstance().get(4).getVlrUunitario(), ListaDeProdutos.getInstance().get(4).getVlrUunitario() * 1));                  
             moviPedido.add(new MoviPedidos(ListaDePedidos.getInstance().get(2), ListaDeProdutos.getInstance().get(3), 4, ListaDeProdutos.getInstance().get(2).getVlrUunitario(), ListaDeProdutos.getInstance().get(2).getVlrUunitario() * 4));                  
        }
         return moviPedido;

@@ -2,7 +2,6 @@ package dcc192.ufjf;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Objects;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -96,15 +95,23 @@ public class PedidosServlet extends HttpServlet {
     }
 
     private void excluiProduto(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        boolean achouProduto = false;
         List<Produtos> p = new ListaDeProdutos().getInstance();
         request.setAttribute("produtos", p);                  
         
-       
+        List<MoviPedidos> mPedidos = new ListaDeMoviPedidos().getInstance();
+        for(int i = 0; i < mPedidos.size(); i++){
+            if(mPedidos.get(i).verificaProduto(p.get(Integer.parseInt(request.getParameter("id"))))){
+                achouProduto = true;
+            }
+        }
         
-        ListaDeProdutos.getInstance().remove(p.get(Integer.parseInt(request.getParameter("id"))));
-            
+        if (achouProduto == false){
+            ListaDeProdutos.getInstance().remove(p.get(Integer.parseInt(request.getParameter("id"))));   
+        }
+        
         RequestDispatcher despachante = request.getRequestDispatcher("produtos.html");        
-        despachante.forward(request, response);
+        despachante.forward(request, response);               
     }
     
 }
