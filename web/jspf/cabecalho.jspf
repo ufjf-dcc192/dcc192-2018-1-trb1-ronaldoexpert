@@ -11,8 +11,8 @@
         
         <nav id="menu">
             <ul>
-                <li><a href="principal.html">Home</a></li>
-                <li><a href="produtos.html">Produtos</a></li>
-                <li><a href="mesas.html">Mesas</a></li>
+                <li><a href="principal.html" class="utils">Home</a></li>
+                <li><a href="produtos.html" class="utils">Produtos</a></li>
+                <li><a href="mesas.html" class="utils">Mesas</a></li>
             </ul>
         </nav>
