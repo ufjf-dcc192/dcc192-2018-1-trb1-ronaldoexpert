@@ -16,20 +16,3 @@
                 <li><a href="mesas.html">Mesas</a></li>
             </ul>
         </nav>
-        <label><h3>Mesas Abertas</h3></label>
-        <div>
-            <table border = 1>
-                <th>Mesa</th>
-                <th>Cliente</th>
-                <th>Total</th>
-                <tr>
-                   <td>001</td>
-                   <td>Ronaldo</td>
-                   <td>R$ 20,00</td>
-                   <td><a href="">Add Itens</a></td>
-                   <td><a href="">Fechar Mesa</a></td>
-                </tr>
-            </table>
-        </div>
-    </body>
-</html>
