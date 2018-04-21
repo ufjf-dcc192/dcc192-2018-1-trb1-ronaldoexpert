@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "PedidosServlet", urlPatterns = {"/PedidosServlet.html", "/mesas.html", "/produtos.html"})
+@WebServlet(name = "PedidosServlet", urlPatterns = {"/PedidosServlet.html", "/mesas.html", "/produtos.html", "/principal.html"})
 public class PedidosServlet extends HttpServlet {
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
@@ -18,6 +18,8 @@ public class PedidosServlet extends HttpServlet {
              listarMesas(request, response);
          }else if("/produtos.html".equals(request.getServletPath())){
              listarProdutos(request, response);
+         }else if("/principal.html".equals(request.getServletPath())){
+             listarPedidos(request, response);
          }
     }
 
@@ -34,6 +36,14 @@ public class PedidosServlet extends HttpServlet {
         request.setAttribute("produtos", produtos);
 
         RequestDispatcher despachante = request.getRequestDispatcher("/WEB-INF/produtos.jsp");
+        despachante.forward(request, response);
+    }
+
+    private void listarPedidos(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Pedido> pedidos = new ListaDePedidos().getInstance();
+        request.setAttribute("pedidos", pedidos);
+
+        RequestDispatcher despachante = request.getRequestDispatcher("/WEB-INF/principal.jsp");
         despachante.forward(request, response);
     }
     

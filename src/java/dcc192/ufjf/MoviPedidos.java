@@ -52,7 +52,7 @@ public class MoviPedidos {
     }
 
     public float getVlrTotal() {
-        return vlrTotal;
+        return (float) this.quatidade * this.vlrUnitario;
     }
 
     public void setVlrTotal(float vlrTotal) {
