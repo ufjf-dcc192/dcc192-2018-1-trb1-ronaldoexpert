@@ -15,19 +15,22 @@
             </thead>
             <tbody>
                 <%
+                    int i = 0;
                     for(Produtos produtos : (List<Produtos>) request.getAttribute("produtos")) {
                 %>   
                 <tr>
-                    <td><%=produtos.getCodigo()%></td>
+                    <td><%=i %></td>
                     <td><%=produtos.getDescricao()%></td>
                     <td><%=produtos.getVlrUunitario() %></td>
                     <td><a href="#" class="edit">Editar</a><a href="#" class="delete">Deletar</a></td>               
                 </tr>
                 <%
+                    i++;
                 }            
                 %>
-            </tbody>
+            </tbody>            
         </table>
+            <a href="novoProduto.html" class="edit">Novo</a>
     </div>
     </body>
 </html>

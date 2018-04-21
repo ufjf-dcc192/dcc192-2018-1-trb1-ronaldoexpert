@@ -1,15 +1,15 @@
 package dcc192.ufjf;
 
 public class Produtos {
-    private int codigo;
+    private static int codigo = 0;
     private String descricao;
     private float vlrUunitario;
 
     public Produtos() {
     }
 
-    public Produtos(int codigo, String descricao, float vlrUunitario) {
-        this.codigo = codigo;
+    public Produtos(String descricao, float vlrUunitario) {
+        this.codigo = this.codigo + 1;
         this.descricao = descricao;
         this.vlrUunitario = vlrUunitario;
     }

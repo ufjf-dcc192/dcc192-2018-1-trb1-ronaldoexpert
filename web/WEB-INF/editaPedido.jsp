@@ -17,7 +17,6 @@
     <table>
         <thead>
             <tr>
-                <th>Código</th>
                 <th>Descrição</th>
                 <th>Valor Unitário</th>
                 <th>Quantidade</th>
@@ -31,7 +30,6 @@
                 for(int i = 0; i < pedidos.getMovimento().size(); i++) {
             %>
             <tr class="alt">
-                <td><%=pedidos.getMovimento().get(i).getCodProduto().getCodigo() %></td>
                 <td><%=pedidos.getMovimento().get(i).getCodProduto().getDescricao() %></td>
                 <td>R$ <%=pedidos.getMovimento().get(i).getVlrUnitario() %></td>
                 <td><%=pedidos.getMovimento().get(i).getQuatidade() %></td>
@@ -42,7 +40,6 @@
                 }            
             %> 
             <tr>
-                <td></td>
                 <td></td>
                 <td></td>
                 <td><b>Total Geral Mesa: </b></td>

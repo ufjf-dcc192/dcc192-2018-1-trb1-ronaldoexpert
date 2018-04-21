@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "PedidosServlet", urlPatterns = {"/PedidosServlet.html", "/mesas.html", "/produtos.html", 
-    "/principal.html", "/editaPedido.html"})
+    "/principal.html", "/editaPedido.html", "/novoProduto.html"})
 public class PedidosServlet extends HttpServlet {
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
@@ -23,6 +23,8 @@ public class PedidosServlet extends HttpServlet {
              listarPedidos(request, response);
          }else if("/editaPedido.html".equals(request.getServletPath())){
              editaPedido(request, response);
+         }else if("/novoProduto.html".equals(request.getServletPath())){
+             novoProduto(request, response);
          }
     }
 
@@ -60,6 +62,26 @@ public class PedidosServlet extends HttpServlet {
 
         RequestDispatcher despachante = request.getRequestDispatcher("/WEB-INF/editaPedido.jsp");
         despachante.forward(request, response);
+    }
+
+    private void novoProduto(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        /*List<Pedido> pedidos = new ListaDePedidos().getInstance();
+        int i = Integer.parseInt(request.getParameter("id"));
+        request.setAttribute("pedidos", pedidos.get(i));*/
+
+        RequestDispatcher despachante = request.getRequestDispatcher("/WEB-INF/novoProduto.jsp");
+        despachante.forward(request, response);
+    }
+    
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if ("/novoProduto.html".equals(req.getServletPath())){
+            String descricao = req.getParameter("descricao");
+            float vlrUnitario = Float.parseFloat(req.getParameter("vlrUnit"));
+            Produtos p = new Produtos(descricao, vlrUnitario);
+            ListaDeProdutos.getInstance().add(p);              
+        }
+        resp.sendRedirect("produtos.html"); 
     }
     
 }
