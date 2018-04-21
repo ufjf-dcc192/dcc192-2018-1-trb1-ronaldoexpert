@@ -28,5 +28,5 @@
                 </tbody>
             </table>
         </div>
-    </body>
-</html>
+                
+ <%@include file="../jspf/footer.jspf" %>                

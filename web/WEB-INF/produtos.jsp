@@ -32,5 +32,6 @@
         </table>
             <a href="novoProduto.html" class="edit">Novo</a>
     </div>
-    </body>
-</html>
+    
+ <%@include file="../jspf/footer.jspf" %>
+

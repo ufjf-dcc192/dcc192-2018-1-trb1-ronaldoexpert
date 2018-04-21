@@ -17,5 +17,5 @@
         </form>
         </div>
     </div>
-    </body>
-</html>
+    
+ <%@include file="../jspf/footer.jspf" %>    

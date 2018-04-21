@@ -1,7 +1,16 @@
-header, footer{
+header{
     background-color: lightgrey;
     padding: 0.2px 10px;
 }
+
+footer{
+    background-color: #ddd;
+    padding: 0.02px 10px;
+    height: 48px;
+    margin-top: 20px;
+    text-align: center;
+}
+
 html{
     width: 800px;
     margin: auto;

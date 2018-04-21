@@ -1,3 +1,7 @@
-<%-- any content can be specified here e.g.: --%>
-<%@ page pageEncoding="UTF-8" %>
-<h4>Sistema de Controle de Pedidos - JosÃ© Ronaldo Silveira Miguel</h4>
+
+
+    <footer>
+            <h4>Sistema de Controle de Pedidos - José Ronaldo Silveira Miguel - 2018</h4>
+    </footer>
+    </body>
+</html>
