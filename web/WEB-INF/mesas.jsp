@@ -15,16 +15,19 @@
                 </thead>
                 <tbody>
                     <%
+                        int i = 0;
                         for(Mesas mesas : (List<Mesas>) request.getAttribute("mesas")) {
                     %>   
                     <tr>
                         <td><%=mesas.getCodigo()%></td>
                         <td><%=mesas.getDescricao()%></td>
-                        <td><a href="#" class="edit">Editar</a><a href="#" class="delete">Deletar</a></td>               
+                        <td><a href="novaMesa.html?id=<%=i%>" class="edit">Editar</a><a href="excluiMesa.html?id=<%=i%>" class="delete">Deletar</a></td>               
                     </tr>
                     <%
+                        i++;
                     }            
                     %>  
+                    <TR><td COLSPAN = 4><a href="novaMesa.html?id=-1" class="edit">Nova Mesa</a></td></TR>
                 </tbody>
             </table>
         </div>

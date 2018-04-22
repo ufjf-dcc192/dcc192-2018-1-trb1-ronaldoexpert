@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "PedidosServlet", urlPatterns = {"/PedidosServlet.html", "/mesas.html", "/produtos.html", 
-    "/principal.html", "/editaPedido.html", "/novoProduto.html", "/excluiProduto.html"})
+    "/principal.html", "/editaPedido.html", "/novoProduto.html", "/excluiProduto.html", "/novaMesa.html", "/excluiMesa.html"})
 public class PedidosServlet extends HttpServlet {
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
@@ -27,6 +27,10 @@ public class PedidosServlet extends HttpServlet {
              novoProduto(request, response);
          }else if("/excluiProduto.html".equals(request.getServletPath())){
              excluiProduto(request, response);
+         }else if("/novaMesa.html".equals(request.getServletPath())){
+             novaMesa(request, response);
+         }else if("/excluiMesa.html".equals(request.getServletPath())){
+             excluiMesa(request, response);
          }
     }
 
@@ -90,8 +94,20 @@ public class PedidosServlet extends HttpServlet {
             }else{
                 ListaDeProdutos.getInstance().set(Integer.parseInt(req.getParameter("id")), p);
             }
-        }
-        resp.sendRedirect("produtos.html"); 
+            resp.sendRedirect("produtos.html"); 
+            
+        }else if ("/novaMesa.html".equals(req.getServletPath())){
+            String codigo = req.getParameter("codigo");
+            String descricao = req.getParameter("descricao");
+            Mesas m = new Mesas(Integer.parseInt(codigo), descricao);
+            
+            if ("-1".equals(req.getParameter("id"))){                
+                ListaDeMesas.getInstance().add(m);    
+            }else{
+                ListaDeMesas.getInstance().set(Integer.parseInt(req.getParameter("id")), m);
+            }
+            resp.sendRedirect("mesas.html"); 
+        }        
     }
 
     private void excluiProduto(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -112,6 +128,37 @@ public class PedidosServlet extends HttpServlet {
         
         RequestDispatcher despachante = request.getRequestDispatcher("produtos.html");        
         despachante.forward(request, response);               
+    }
+
+    private void novaMesa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int i = Integer.parseInt(request.getParameter("id"));
+        if (i >= 0){
+            List<Mesas> mesas = new ListaDeMesas().getInstance();
+            request.setAttribute("mesas", mesas.get(i));    
+        }        
+        
+        RequestDispatcher despachante = request.getRequestDispatcher("/WEB-INF/novaMesa.jsp");
+        despachante.forward(request, response);
+    }
+
+    private void excluiMesa(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        boolean achouMesa = false;
+        List<Mesas> m = new ListaDeMesas().getInstance();
+        request.setAttribute("mesas", m);                  
+        
+        List<Pedido> Pedidos = new ListaDePedidos().getInstance();
+        for(int i = 0; i < Pedidos.size(); i++){
+            if(Pedidos.get(i).VerificaMesa(m.get(Integer.parseInt(request.getParameter("id"))))){
+                achouMesa = true;
+            }
+        }
+         
+        if (achouMesa == false){
+            ListaDeMesas.getInstance().remove(m.get(Integer.parseInt(request.getParameter("id"))));   
+        }
+        
+        RequestDispatcher despachante = request.getRequestDispatcher("/WEB-INF/mesas.jsp");        
+        despachante.forward(request, response);
     }
     
 }

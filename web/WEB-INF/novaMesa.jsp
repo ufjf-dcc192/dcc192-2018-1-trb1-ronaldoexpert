@@ -1,3 +1,4 @@
+<%@page import="dcc192.ufjf.Mesas"%>
 <%@page import="java.util.List"%>
 <%@page import="dcc192.ufjf.Produtos"%>
 <%@include file="../jspf/cabecalho.jspf" %>
@@ -10,18 +11,18 @@
         <form method="post">    
             <%
             if(!"-1".equals(request.getParameter("id"))){
-                Produtos p;
-                p = (Produtos)request.getAttribute("produtos");        
+                Mesas m;
+                m = (Mesas)request.getAttribute("mesas");        
             %>   
-                <label>Descrição <input type="text" name="descricao" value="<%=p.getDescricao() %>" /> </label>
+                <label>Código <input type="text" name="codigo" value="<%=m.getCodigo() %>" /> </label>
                 <br>
-                <label>Valor Unitário <input type="text" name="vlrUnit" value="<%=p.getVlrUunitario() %>" /> </label>
+                <label>Descrição <input type="text" name="descricao" value="<%=m.getDescricao() %>" /> </label>
             <%
             }else{
             %>
-                <label>Descrição <input type="text" name="descricao" value="" /> </label>
+                <label>Código <input type="text" name="codigo" value="" /> </label>
                 <br>
-                <label>Valor Unitário <input type="text" name="vlrUnit" value="" /> </label>
+                <label>VDescrição <input type="text" name="descricao" value="" /> </label>
             <%
             }
             %>   
