@@ -52,3 +52,18 @@ li a:hover {
 .active {
     background-color: red;
 }
+
+a.index {
+    color: #eee;
+    background-color: #434A48;
+    padding: 10px 372px;
+    text-align: center;
+}
+h1.index{
+    text-align: center;
+}
+
+a:hover.index {
+    color: #eee;
+    background-color: black;
+}

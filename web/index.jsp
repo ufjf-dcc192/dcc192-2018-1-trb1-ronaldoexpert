@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="css/template.css">
     </head>
     <body>
-        <h1>Controle de Pedidos</h1>
-        <a href="principal.html">Entrar</a>
+        <h1 class="index">Controle de Pedidos</h1>
+        <a href="principal.html" class="index">Entrar</a>
     </body>
 </html>
