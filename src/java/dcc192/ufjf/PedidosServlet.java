@@ -117,9 +117,14 @@ public class PedidosServlet extends HttpServlet {
             String mesa = req.getParameter("idMesa");
             List<Mesas> m = new ListaDeMesas().getInstance();
             
+            String codProduto = 
+                    ((Produtos) req.getParameter("produtos")).;
+            
             String responsavel = req.getParameter("responsavel");
             float total = 0;            
-            total = Float.parseFloat(req.getParameter("quantidade")) * 2;
+            float vlrUnit = 0;            
+            float quantidade = Float.parseFloat(req.getParameter("quantidade"));
+            
             
             Pedido pedido = new Pedido(numero, data, total, m.get(Integer.parseInt(mesa)), responsavel);
             ListaDePedidos.getInstance().add(pedido);

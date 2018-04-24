@@ -21,17 +21,18 @@
     <form method="post"> 
         <label>Produto 
             <select name="produtos">
-                <option>* Selecione *</option>
                 <%
                     List<Produtos> produtos = new ListaDeProdutos().getInstance();
                     for(int i = 0; i < produtos.size(); i++) {
                 %> 
-                <option name="vlrUnit" value="<%=produtos.get(i).getVlrUunitario() %>" >
+                <option value="<%=produtos.get(i)%>">
                     <%=produtos.get(i).getDescricao() %> - R$ <%=produtos.get(i).getVlrUunitario() %>  
                 </option>
                 <%
                 }            
                 %>
+                
+                
             </select>
         </label>  
             

@@ -1,7 +1,6 @@
 package dcc192.ufjf;
 
 public class Produtos {
-    private static int codigo = 0;
     private String descricao;
     private float vlrUunitario;
 
@@ -9,17 +8,8 @@ public class Produtos {
     }
 
     public Produtos(String descricao, float vlrUunitario) {
-        this.codigo = this.codigo + 1;
         this.descricao = descricao;
         this.vlrUunitario = vlrUunitario;
-    }
-
-    public int getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
     }
 
     public String getDescricao() {
@@ -40,7 +30,7 @@ public class Produtos {
 
     @Override
     public String toString() {
-        return  codigo + " - " + descricao + " - " + vlrUunitario;
+        return  descricao + " - " + vlrUunitario;
     }
     
     
