@@ -30,7 +30,7 @@ public class Produtos {
 
     @Override
     public String toString() {
-        return  descricao + " - " + vlrUunitario;
+        return  descricao + "," + vlrUunitario;
     }
     
     
