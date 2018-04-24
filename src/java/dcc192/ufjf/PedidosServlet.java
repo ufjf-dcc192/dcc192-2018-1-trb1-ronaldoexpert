@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "PedidosServlet", urlPatterns = {"/PedidosServlet.html", "/mesas.html", "/produtos.html", 
     "/principal.html", "/editaPedido.html", "/novoProduto.html", "/excluiProduto.html", "/novaMesa.html", 
-    "/excluiMesa.html", "/novoPedido.html"})
+    "/excluiMesa.html", "/novoPedido.html","/fechaPedido.html"})
 public class PedidosServlet extends HttpServlet {
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
@@ -37,6 +37,8 @@ public class PedidosServlet extends HttpServlet {
              excluiMesa(request, response);
          }else if("/novoPedido.html".equals(request.getServletPath())){
              novoPedido(request, response);
+         }else if("/fechaPedido.html".equals(request.getServletPath())){
+             fechaPedido(request, response);
          }
     }
 
@@ -115,7 +117,11 @@ public class PedidosServlet extends HttpServlet {
             resp.sendRedirect("mesas.html"); 
             
         }else if ("/novoPedido.html".equals(req.getServletPath())){
-            String numero = "00007";
+            int num = 0;
+            List<Pedido> lstPedidos = new ListaDePedidos().getInstance();
+            for (Pedido lstPedido : lstPedidos) {
+               num++; 
+            }
             
             Date dt = new Date();
             SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
@@ -211,6 +217,20 @@ public class PedidosServlet extends HttpServlet {
         request.setAttribute("mesas", mesas.get(i));
 
         RequestDispatcher despachante = request.getRequestDispatcher("/WEB-INF/novoPedido.jsp");
+        despachante.forward(request, response);
+    }
+
+    private void fechaPedido(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        GregorianCalendar hr = new GregorianCalendar();
+        SimpleDateFormat hr2 = new SimpleDateFormat("HH:mm");
+        String hora = hr2.format(hr.getTime()) + "";
+        
+        List<Pedido> pedidos = new ListaDePedidos().getInstance();
+        int i = Integer.parseInt(request.getParameter("id"));
+        pedidos.get(i).setHrFechamento(hora);       
+        
+        request.setAttribute("pedidos", pedidos.get(i));             
+        RequestDispatcher despachante = request.getRequestDispatcher("/WEB-INF/fechaPedido.jsp");
         despachante.forward(request, response);
     }
     

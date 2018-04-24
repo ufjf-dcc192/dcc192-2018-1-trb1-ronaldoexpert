@@ -12,6 +12,7 @@ public class Pedido {
     private String responsavel;
     private Float total;
     private Mesas idMesa;
+    private String hrFechamento;
 
     public Pedido() {
     }
@@ -97,6 +98,14 @@ public class Pedido {
 
     public void setHora(String hora) {
         this.hora = hora;
+    }
+
+    public String getHrFechamento() {
+        return hrFechamento;
+    }
+
+    public void setHrFechamento(String hrFechamento) {
+        this.hrFechamento = hrFechamento;
     }
     
     

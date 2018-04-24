@@ -27,7 +27,7 @@
                        <td><%=pedidos.getIdMesa().getDescricao() %></td>
                        <td><%=pedidos.getResponsavel() %></td>
                        <td><%=pedidos.getTotal() %></td>
-                       <td><a href="editaPedido.html?id=<%=i%>" class="edit">Editar</a><a href="#" class="delete">Fechar</a></td>  
+                       <td><a href="editaPedido.html?id=<%=i%>" class="edit">Editar</a><a href="fechaPedido.html?id=<%=i%>" class="delete">Fechar</a></td>  
                     </tr>
                     <%
                         i++;
