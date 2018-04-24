@@ -7,6 +7,7 @@ import java.util.List;
 public class Pedido {
     private String numero;
     private String data;
+    private String hora;
     private List<MoviPedidos> movimento;
     private String responsavel;
     private Float total;
@@ -15,13 +16,14 @@ public class Pedido {
     public Pedido() {
     }
 
-    public Pedido(String numero, String data, float total, Mesas idMesa, String responsavel) {
+    public Pedido(String numero, String data, float total, Mesas idMesa, String responsavel, String hora) {
         this.numero = numero;
         this.data = data;
         this.total = total;
         this.idMesa = idMesa;
         this.movimento = new ArrayList<>();
         this.responsavel = responsavel;
+        this.hora = hora;
     }
 
     public String getResponsavel() {
@@ -88,4 +90,14 @@ public class Pedido {
     void setTotal(float vlrTotal) {
         this.total= vlrTotal;
     }
+
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
+    
+    
 }

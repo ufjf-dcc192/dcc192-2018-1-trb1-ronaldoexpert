@@ -13,7 +13,7 @@
     <%Pedido pedidos = ListaDePedidos.getInstance().get(Integer.parseInt(request.getParameter("id")));%>
     <h3>
         Edita Pedido 
-        <label>Pedido: <%=pedidos.getNumero() %> - <%=pedidos.getIdMesa().getDescricao() %>  </label>
+        <label>Pedido: <%=pedidos.getNumero() %> | <%=pedidos.getData() %> - <%=pedidos.getHora() %> | <%=pedidos.getIdMesa().getDescricao() %>  </label>
     </h3>
     
     <form method="post"> 
@@ -32,7 +32,7 @@
         </label>
             
         <label>Quantidade <input type="text" name="quantidade" value="0" /> </label>
-        <label>Responsável <input type="text" name="responsavel" value="" /> </label>
+        <label>Responsável <input type="text" name="responsavel" value="<%=pedidos.getResponsavel() %>" /> </label>
  
         <input type="submit" value="Inserir" />  
     </form>
@@ -44,6 +44,7 @@
                 <th>Valor Unitário</th>
                 <th>Quantidade</th>
                 <th>Total</th>
+                <th>Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -57,6 +58,7 @@
                 <td>R$ <%=pedidos.getMovimento().get(i).getVlrUnitario() %></td>
                 <td><%=pedidos.getMovimento().get(i).getQuatidade() %></td>
                 <td>R$ <%=pedidos.getMovimento().get(i).getVlrTotal() %></td>
+                <td><a href="excluiProdPed.html?id=<%=i%>" class="delete">Excluir</a></td>
             </tr>
             <%
                     vTotal = vTotal + pedidos.getMovimento().get(i).getVlrTotal();
@@ -64,9 +66,10 @@
             %> 
             <tr>
                 <td></td>
-                <td></td>
+                <td></td>                
                 <td><b>Total Geral Mesa: </b></td>
                 <td><b>R$ <%=vTotal %></b></td>
+                <td></td>
             </tr>
             
         </tbody>

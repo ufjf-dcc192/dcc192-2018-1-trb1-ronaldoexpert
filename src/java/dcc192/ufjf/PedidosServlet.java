@@ -1,6 +1,9 @@
 package dcc192.ufjf;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -113,7 +116,15 @@ public class PedidosServlet extends HttpServlet {
             
         }else if ("/novoPedido.html".equals(req.getServletPath())){
             String numero = "00007";
-            String data = "23/04/2018";
+            
+            Date dt = new Date();
+            SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+            String data = formatador.format(dt) + "";
+            
+            GregorianCalendar hr = new GregorianCalendar();
+            SimpleDateFormat hr2 = new SimpleDateFormat("HH:mm");
+            String hora = hr2.format(hr.getTime()) + "";
+            
             String mesa = req.getParameter("idMesa");
             List<Mesas> m = new ListaDeMesas().getInstance();
             
@@ -126,7 +137,7 @@ public class PedidosServlet extends HttpServlet {
             float total = vlrUnit * quantidade; 
             String responsavel = req.getParameter("responsavel");
 
-            Pedido pedido = new Pedido(numero, data, total, m.get(Integer.parseInt(mesa)), responsavel);
+            Pedido pedido = new Pedido(numero, data, total, m.get(Integer.parseInt(mesa)), responsavel, hora);
             ListaDePedidos.getInstance().add(pedido);
             
             Produtos prod  = new Produtos(descricao, vlrUnit);
