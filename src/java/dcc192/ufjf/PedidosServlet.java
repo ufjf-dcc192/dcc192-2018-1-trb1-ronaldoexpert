@@ -123,6 +123,8 @@ public class PedidosServlet extends HttpServlet {
                num++; 
             }
             
+            String numero = (num + 1)+"";
+            
             Date dt = new Date();
             SimpleDateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
             String data = formatador.format(dt) + "";
@@ -135,8 +137,8 @@ public class PedidosServlet extends HttpServlet {
             List<Mesas> m = new ListaDeMesas().getInstance();
             
             String produto = req.getParameter("produtos");
-            String[] produtosSeparado = produto.split(",");    
-
+            String[] produtosSeparado = produto.split(",");  
+            
             String descricao = produtosSeparado[0];
             float vlrUnit = Float.parseFloat(produtosSeparado[1]);
             int quantidade = Integer.parseInt(req.getParameter("quantidade"));            
@@ -151,6 +153,47 @@ public class PedidosServlet extends HttpServlet {
             MoviPedidos mp = new MoviPedidos(pedido, prod, quantidade, vlrUnit, total);
             pedido.getMovimento().add(mp);
             ListaDeMoviPedidos.getInstance().add(mp);
+            
+            
+            resp.sendRedirect("principal.html"); 
+            
+        }else if ("/editaPedido.html".equals(req.getServletPath())){           
+            List<Pedido> pedidos = new ListaDePedidos().getInstance();
+            int i = Integer.parseInt(req.getParameter("id"));
+            Pedido p = pedidos.get(i);
+            String numero = p.getNumero();
+            String data = p.getData();
+            String hora = p.getHora();
+            Mesas mesa = p.getIdMesa();
+            
+            String produto = req.getParameter("produtos");
+            String[] produtosSeparado = produto.split(","); 
+            
+            String descricao = produtosSeparado[0];
+            float vlrUnit = Float.parseFloat(produtosSeparado[1]);
+            int quantidade = Integer.parseInt(req.getParameter("quantidade"));            
+            float total = vlrUnit * quantidade; 
+            String responsavel = req.getParameter("responsavel");
+
+            Pedido pedido = new Pedido(numero, data, total, mesa, responsavel, hora);
+            ListaDePedidos.getInstance().set(Integer.parseInt(req.getParameter("id")),pedido);
+            
+            
+            int j;
+            for (j = 0; j < p.getMovimento().size(); j++) {
+                MoviPedidos mp2 = new MoviPedidos(pedido, p.getMovimento().get(j).getCodProduto(), p.getMovimento().get(j).getQuatidade(), p.getMovimento().get(j).getVlrUnitario(), p.getMovimento().get(j).getVlrTotal());
+                pedido.getMovimento().add(mp2);
+            }
+            
+            Produtos prod  = new Produtos(descricao, vlrUnit);
+            MoviPedidos mp = new MoviPedidos(pedido, prod, quantidade, vlrUnit, total);
+            pedido.getMovimento().add(mp);
+            ListaDeMoviPedidos.getInstance().add(mp);
+            
+           for (int k = 0; k < p.getMovimento().size(); k++) {
+               total = total + pedido.getMovimento().get(k).getVlrTotal();
+           }
+           pedido.setTotal(total);
             
             
             resp.sendRedirect("principal.html"); 

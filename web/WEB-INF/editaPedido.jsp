@@ -13,18 +13,20 @@
     <%Pedido pedidos = ListaDePedidos.getInstance().get(Integer.parseInt(request.getParameter("id")));%>
     <h3>
         Edita Pedido 
-        <label>Pedido: <%=pedidos.getNumero() %> | <%=pedidos.getData() %> - <%=pedidos.getHora() %> | <%=pedidos.getIdMesa().getDescricao() %>  </label>
+        <label>Pedido: <%=pedidos.getNumero() %> </label> 
+        <label>Data / Hora:  <%=pedidos.getData() %> - <%=pedidos.getHora() %> </label>
+        <label>Mesa: <%=pedidos.getIdMesa().getDescricao() %> </label>
+        <label>Responsável: <%=pedidos.getResponsavel() %> </label>
     </h3>
     
     <form method="post"> 
         <label>Produto 
             <select name="produtos">
-                <option>* Selecione *</option>
                 <%
                     List<Produtos> produtos = new ListaDeProdutos().getInstance();
                     for(int i = 0; i < produtos.size(); i++) {
                 %> 
-                <option><%=produtos.get(i).getDescricao() %> - R$ <%=produtos.get(i).getVlrUunitario() %>  </option>
+                <option value="<%=produtos.get(i)%>"><%=produtos.get(i).getDescricao() %> - R$ <%=produtos.get(i).getVlrUunitario() %>  </option>
                 <%
                 }            
                 %>
@@ -54,7 +56,7 @@
                 for(int i = 0; i < pedidos.getMovimento().size(); i++) {
             %>
             <tr class="alt">
-                <td><%=pedidos.getMovimento().get(i).getCodProduto().getDescricao() %></td>
+                <td name="lstProdutos"><%=pedidos.getMovimento().get(i).getCodProduto().getDescricao() %></td>
                 <td>R$ <%=pedidos.getMovimento().get(i).getVlrUnitario() %></td>
                 <td><%=pedidos.getMovimento().get(i).getQuatidade() %></td>
                 <td>R$ <%=pedidos.getMovimento().get(i).getVlrTotal() %></td>

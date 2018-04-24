@@ -16,7 +16,7 @@
         <label>Pedido: <%=pedidos.getNumero() %> </label> 
         <label>Data / Hora:  <%=pedidos.getData() %> - <%=pedidos.getHora() %> </label>
         <label>Mesa: <%=pedidos.getIdMesa().getDescricao() %> </label>
-        <label>Responsável: <%=pedidos.getIdMesa().getDescricao() %> </label>
+        <label>Responsável: <%=pedidos.getResponsavel() %> </label>
         <label>Hora Fechamento: <%=pedidos.getHrFechamento() %> </label>
     </h3>
     
