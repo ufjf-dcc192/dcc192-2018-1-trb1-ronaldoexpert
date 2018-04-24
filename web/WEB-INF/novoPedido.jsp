@@ -1,4 +1,6 @@
     
+<%@page import="dcc192.ufjf.ListaDeMesas"%>
+<%@page import="dcc192.ufjf.Mesas"%>
 <%@page import="dcc192.ufjf.ListaDeProdutos"%>
 <%@page import="dcc192.ufjf.ListaDePedidos"%>
 <%@page import="dcc192.ufjf.Pedido"%>
@@ -10,10 +12,10 @@
 <link rel="stylesheet" href="css/template.css">
 
 <div class="grid_16">
-    <%Pedido pedidos = ListaDePedidos.getInstance().get(Integer.parseInt(request.getParameter("id")));%>
+    <%Mesas mesa = ListaDeMesas.getInstance().get(Integer.parseInt(request.getParameter("idMesa")));%>
     <h3>
         Edita Pedido 
-        <label>Pedido: <%=pedidos.getNumero() %> - <%=pedidos.getIdMesa().getDescricao() %>  </label>
+        <label>Mesa: <%=mesa.getDescricao() %> </label>
     </h3>
     
     <form method="post"> 
@@ -24,14 +26,17 @@
                     List<Produtos> produtos = new ListaDeProdutos().getInstance();
                     for(int i = 0; i < produtos.size(); i++) {
                 %> 
-                <option><%=produtos.get(i).getDescricao() %> - R$ <%=produtos.get(i).getVlrUunitario() %>  </option>
+                <option name="vlrUnit" value="<%=produtos.get(i).getVlrUunitario() %>" >
+                    <%=produtos.get(i).getDescricao() %> - R$ <%=produtos.get(i).getVlrUunitario() %>  
+                </option>
                 <%
                 }            
                 %>
             </select>
-        </label>
+        </label>  
             
         <label>Quantidade <input type="text" name="quantidade" value="0" /> </label>
+
         <label>Responsável <input type="text" name="responsavel" value="" /> </label>
  
         <input type="submit" value="Inserir" />  
@@ -47,28 +52,18 @@
             </tr>
         </thead>
         <tbody>
-            <%
-                float vTotal = 0;
-                                
-                for(int i = 0; i < pedidos.getMovimento().size(); i++) {
-            %>
             <tr class="alt">
-                <td><%=pedidos.getMovimento().get(i).getCodProduto().getDescricao() %></td>
-                <td>R$ <%=pedidos.getMovimento().get(i).getVlrUnitario() %></td>
-                <td><%=pedidos.getMovimento().get(i).getQuatidade() %></td>
-                <td>R$ <%=pedidos.getMovimento().get(i).getVlrTotal() %></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
             </tr>
-            <%
-                    vTotal = vTotal + pedidos.getMovimento().get(i).getVlrTotal();
-                }            
-            %> 
             <tr>
                 <td></td>
                 <td></td>
                 <td><b>Total Geral Mesa: </b></td>
-                <td><b>R$ <%=vTotal %></b></td>
+                <td><b>R$ 0</b></td>
             </tr>
-            
         </tbody>
     </table>
 </div>

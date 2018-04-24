@@ -59,9 +59,9 @@
                         <tr>
                            <td><%=mesas.getCodigo() %></td>
                            <td><%=mesas.getDescricao()%></td>
-                           <td><a href="editaPedido.html" class="edit">Abrir Mesa</a></td>  
+                           <td><a href="novoPedido.html?idMesa=<%=mesas.getCodigo()-1 %>" class="edit">Abrir Mesa</a></td>  
                         </tr>
-                    <%                                
+                    <%       
                             }                            
                         }
                     %> 
