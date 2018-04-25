@@ -276,7 +276,7 @@ public class PedidosServlet extends HttpServlet {
         RequestDispatcher despachante = request.getRequestDispatcher("/WEB-INF/fechaPedido.jsp");
         despachante.forward(request, response);
         
-        pedidos.remove(pedidos.get(i));
+        pedidos.remove(pedidos.get(i)); 
     }
     
 }
